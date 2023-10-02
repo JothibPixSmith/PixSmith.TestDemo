@@ -2,7 +2,7 @@
 using PixelPerPixel.TestDemo.Domain;
 using PixelPerPixel.TestDemo.Repositories.Interfaces;
 
-namespace PixelPerPixel.TestDemo.Tests.Specflow.Mocks;
+namespace PixelPerPixel.TestDemo.UnitTests.Specflow.Mocks;
 
 public class FooBarRepositoryMocks
 {

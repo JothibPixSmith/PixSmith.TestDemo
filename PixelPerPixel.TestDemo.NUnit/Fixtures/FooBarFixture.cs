@@ -1,6 +1,6 @@
 ﻿using PixelPerPixel.TestDemo.Domain;
 
-namespace PixelPerPixel.TestDemo.Tests.NUnit.Fixtures;
+namespace PixelPerPixel.TestDemo.UnitTests.NUnit.Fixtures;
 
 public static class FooBarFixture
 {

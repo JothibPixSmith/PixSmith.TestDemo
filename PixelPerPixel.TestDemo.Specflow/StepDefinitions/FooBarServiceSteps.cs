@@ -1,10 +1,10 @@
 using PixelPerPixel.TestDemo.Domain;
 using PixelPerPixel.TestDemo.Services;
 using PixelPerPixel.TestDemo.Services.Interfaces;
-using PixelPerPixel.TestDemo.Tests.Specflow.Fixtures;
-using PixelPerPixel.TestDemo.Tests.Specflow.Mocks;
+using PixelPerPixel.TestDemo.UnitTests.Specflow.Fixtures;
+using PixelPerPixel.TestDemo.UnitTests.Specflow.Mocks;
 
-namespace PixelPerPixel.TestDemo.Tests.Specflow.StepDefinitions
+namespace PixelPerPixel.TestDemo.UnitTests.Specflow.StepDefinitions
 {
     [Binding]
     public sealed class FooBarServiceSteps

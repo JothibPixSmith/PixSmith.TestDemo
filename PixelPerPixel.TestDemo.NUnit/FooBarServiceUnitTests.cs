@@ -1,9 +1,9 @@
 using PixelPerPixel.TestDemo.Services;
 using PixelPerPixel.TestDemo.Services.Interfaces;
-using PixelPerPixel.TestDemo.Tests.NUnit.Fixtures;
-using PixelPerPixel.TestDemo.Tests.NUnit.Mocks;
+using PixelPerPixel.TestDemo.UnitTests.NUnit.Fixtures;
+using PixelPerPixel.TestDemo.UnitTests.NUnit.Mocks;
 
-namespace PixelPerPixel.TestDemo.Tests.NUnit
+namespace PixelPerPixel.TestDemo.UnitTests.NUnit
 {
     public class FooBarServiceUnitTests
     {

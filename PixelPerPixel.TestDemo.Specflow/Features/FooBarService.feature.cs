@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace PixelPerPixel.TestDemo.Tests.Specflow.Features
+namespace PixelPerPixel.TestDemo.UnitTests.Specflow.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -31,7 +31,7 @@ namespace PixelPerPixel.TestDemo.Tests.Specflow.Features
 #line 1 "FooBarService.feature"
 #line hidden
         
-        public FooBarServiceFeature(FooBarServiceFeature.FixtureData fixtureData, PixelPerPixel_TestDemo_Tests_Specflow_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public FooBarServiceFeature(FooBarServiceFeature.FixtureData fixtureData, PixelPerPixel_TestDemo_UnitTests_Specflow_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();

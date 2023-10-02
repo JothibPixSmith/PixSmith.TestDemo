@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PixelPerPixel.TestDemo.Tests.xUnit.Mocks;
+using PixelPerPixel.TestDemo.UnitTests.xUnit.Mocks;
 
-namespace PixelPerPixel.TestDemo.Tests.xUnit
+namespace PixelPerPixel.TestDemo.UnitTests.xUnit
 {
     public class Startup
     {
