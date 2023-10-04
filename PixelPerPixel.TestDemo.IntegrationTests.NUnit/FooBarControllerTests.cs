@@ -25,6 +25,8 @@ namespace PixelPerPixel.TestDemo.IntegrationTests.NUnit
             this.restService.FooBarServiceReplacement = this.serviceMock.ServiceMock.Object;
 
             var savedFooBar = await restService.SaveFooBar(FooBarFixture.Default);
+
+            Assert.That(savedFooBar.Foo, Is.EqualTo(FooBarFixture.Default.Foo));
         }
     }
 }

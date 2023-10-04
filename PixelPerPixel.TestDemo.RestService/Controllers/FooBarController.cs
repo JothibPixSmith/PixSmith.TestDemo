@@ -24,7 +24,7 @@ namespace PixelPerPixel.TestDemo.RestService.Controllers
             return await this.fooBarService.SaveFooBar(fooBar);
         }
 
-        [HttpGet("get/{foo}")]
+        [HttpGet("{foo}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<FooBar> GetFooBar([FromRoute] int foo)

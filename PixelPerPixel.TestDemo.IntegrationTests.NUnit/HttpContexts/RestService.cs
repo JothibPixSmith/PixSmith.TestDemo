@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using PixelPerPixel.TestDemo.Domain;
+using PixelPerPixel.TestDemo.RestService;
 using PixelPerPixel.TestDemo.Services.Interfaces;
 using System.Net;
+using System.Text;
 using System.Text.Json;
 
 namespace PixelPerPixel.TestDemo.IntegrationTests.NUnit.HttpContexts
@@ -23,7 +26,8 @@ namespace PixelPerPixel.TestDemo.IntegrationTests.NUnit.HttpContexts
                 .Build();
 
             webHostBuilder = new WebHostBuilder()
-                .UseConfiguration(configuration);
+                    .UseStartup<Startup>()
+                    .UseConfiguration(configuration);
         }
 
         public HttpStatusCode HttpResponseForSaveFooBar { get; private set; }
@@ -40,11 +44,13 @@ namespace PixelPerPixel.TestDemo.IntegrationTests.NUnit.HttpContexts
                 {
                     var currentService = services
                         .FirstOrDefault(x =>
-                            x.ServiceType == this.FooBarServiceReplacement.GetType());
+                            x.ServiceType == typeof(IFooBarService));
 
                     if (currentService != null)
                     {
                         services.Remove(currentService);
+
+                        services.AddTransient(x => this.FooBarServiceReplacement);
                     }
 
                 }
@@ -63,12 +69,15 @@ namespace PixelPerPixel.TestDemo.IntegrationTests.NUnit.HttpContexts
             this.StartApp();
 
             var response
-                = await this.clientForTests.PostAsync("foobar/savefoobar",
-                    new StringContent(JsonSerializer.Serialize(fooBar)));
+                = await this.clientForTests.PostAsync("api/foobar",
+                    new StringContent(JsonSerializer.Serialize(fooBar), Encoding.UTF8, "application/json"));
 
             this.HttpResponseForSaveFooBar = response.StatusCode;
 
-            return JsonSerializer.Deserialize<FooBar>(await response.Content.ReadAsStringAsync());
+            return JsonSerializer.Deserialize<FooBar>(await response.Content.ReadAsStringAsync(), new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            });
         }
 
         public async Task<FooBar> GetFooBar(int foo)
@@ -76,7 +85,7 @@ namespace PixelPerPixel.TestDemo.IntegrationTests.NUnit.HttpContexts
             this.StartApp();
 
             var response
-                = await this.clientForTests.GetAsync($"foobar/get/{foo}");
+                = await this.clientForTests.GetAsync($"api/foobar/{foo}");
 
             this.HttpResponseForGetFooBar = response.StatusCode;
 

@@ -20,7 +20,7 @@ namespace PixelPerPixel.TestDemo.Repositories
             var collection = this.mongoDbContext.FooBarCollection;
 
             var currentDocument = await collection.AsQueryable()
-                .SingleAsync(x => x.Foo == fooBar.Foo);
+                .FirstOrDefaultAsync(x => x.Foo == fooBar.Foo);
 
             if (currentDocument != null)
             {
