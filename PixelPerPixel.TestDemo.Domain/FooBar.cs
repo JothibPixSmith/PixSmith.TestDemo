@@ -1,6 +1,6 @@
 ﻿namespace PixelPerPixel.TestDemo.Domain
 {
-    public class FooBar : MongoBase
+    public class FooBar : DomainBase
     {
         public int Foo { get; set; }
 

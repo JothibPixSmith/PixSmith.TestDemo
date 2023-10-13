@@ -25,12 +25,16 @@ namespace PixelPerPixel.TestDemo.Repositories
             if (currentDocument != null)
             {
                 fooBar.Id = currentDocument.Id;
+
+                await collection.ReplaceOneAsync(
+                    Builders<FooBar>.Filter.Eq(x => x.Id, fooBar.Id),
+                    fooBar,
+                    new ReplaceOptions { IsUpsert = true });
+
+                return fooBar;
             }
 
-            await collection.ReplaceOneAsync(
-                Builders<FooBar>.Filter.Eq(x => x.Id, fooBar.Id),
-                 fooBar,
-                new ReplaceOptions { IsUpsert = true });
+            await collection.InsertOneAsync(fooBar);
 
             return fooBar;
         }

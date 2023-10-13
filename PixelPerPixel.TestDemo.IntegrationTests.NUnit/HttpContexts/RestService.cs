@@ -89,7 +89,10 @@ namespace PixelPerPixel.TestDemo.IntegrationTests.NUnit.HttpContexts
 
             this.HttpResponseForGetFooBar = response.StatusCode;
 
-            return JsonSerializer.Deserialize<FooBar>(await response.Content.ReadAsStringAsync());
+            return JsonSerializer.Deserialize<FooBar>(await response.Content.ReadAsStringAsync(), new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            });
         }
     }
 }

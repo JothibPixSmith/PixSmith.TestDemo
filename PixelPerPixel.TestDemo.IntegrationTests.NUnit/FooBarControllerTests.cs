@@ -28,5 +28,17 @@ namespace PixelPerPixel.TestDemo.IntegrationTests.NUnit
 
             Assert.That(savedFooBar.Foo, Is.EqualTo(FooBarFixture.Default.Foo));
         }
+
+        [Test]
+        public async Task FooBarControllerGetFooBarTest()
+        {
+            this.serviceMock.MockGetFooBar(FooBarFixture.Default);
+
+            this.restService.FooBarServiceReplacement = this.serviceMock.ServiceMock.Object;
+
+            var savedFooBar = await restService.GetFooBar(123);
+
+            Assert.That(savedFooBar.Foo, Is.EqualTo(FooBarFixture.Default.Foo));
+        }
     }
 }
