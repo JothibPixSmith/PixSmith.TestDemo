@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using PixelPerPixel.TestDemo.DbContext;
+using PixelPerPixel.TestDemo.Domain;
 using PixelPerPixel.TestDemo.Domain.Models.Settings;
 using PixelPerPixel.TestDemo.IntegrationTests.NUnit.Fixture;
 using PixelPerPixel.TestDemo.Repositories;
@@ -35,7 +37,7 @@ public class FooBarRepositoryTests
         }));
     }
 
-    [Test, Order(1)]
+    [Test]
     public async Task SaveFooBarTest()
     {
         IFooBarRepository repository = new FooBarRepository(this.dbContext);
@@ -45,7 +47,7 @@ public class FooBarRepositoryTests
         Assert.IsNotNull(newFooBar.Id);
     }
 
-    [Test, Order(2)]
+    [Test]
     public async Task SaveFooBarTestNewEntity()
     {
         var fooBarToSave = FooBarFixture.Default;
@@ -59,13 +61,21 @@ public class FooBarRepositoryTests
         Assert.IsNotNull(newFooBar.Id);
     }
 
-    [Test, Order(3)]
+    [Test]
     public async Task GetFooBarTest()
     {
+        await this.dbContext.FooBarCollection.InsertOneAsync(FooBarFixture.Default);
+
         IFooBarRepository repository = new FooBarRepository(this.dbContext);
 
         var newFooBar = await repository.GetFooBar(123);
 
         Assert.IsNotNull(newFooBar.Id);
+    }
+
+    [TearDown]
+    public async Task TearDown()
+    {
+        await this.dbContext.FooBarCollection.DeleteManyAsync(FilterDefinition<FooBar>.Empty);
     }
 }
