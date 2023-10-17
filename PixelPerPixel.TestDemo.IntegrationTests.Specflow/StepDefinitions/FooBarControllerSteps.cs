@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using PixelPerPixel.TestDemo.Domain;
-using PixelPerPixel.TestDemo.IntegrationTests.Specflow.Fxitures;
+using PixelPerPixel.TestDemo.IntegrationTests.Specflow.Fixtures;
 using PixelPerPixel.TestDemo.IntegrationTests.Specflow.Mocks;
 
 namespace PixelPerPixel.TestDemo.IntegrationTests.Specflow.StepDefinitions

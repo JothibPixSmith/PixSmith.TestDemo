@@ -129,6 +129,54 @@ this.FeatureBackground();
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("FooBar Repository Performs GetFooBar")]
+        [NUnit.Framework.CategoryAttribute("AfterScenario.Database.CleanDatabase")]
+        public virtual void FooBarRepositoryPerformsGetFooBar()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "AfterScenario.Database.CleanDatabase"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FooBar Repository Performs GetFooBar", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 14
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 3
+this.FeatureBackground();
+#line hidden
+#line 15
+ testRunner.Given("FooBar Repository is initialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 16
+ testRunner.And("A default instance of FooBar is present in the Db", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 17
+ testRunner.When("FooBar Repository GetFooBar method is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 18
+ testRunner.Then("FooBar Repository returns FooBar with non-null id field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

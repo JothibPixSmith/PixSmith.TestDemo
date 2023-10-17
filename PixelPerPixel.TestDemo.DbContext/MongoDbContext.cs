@@ -21,10 +21,9 @@ namespace PixelPerPixel.TestDemo.DbContext
             this.databaseName = settings.Value.DatabaseName;
 
             this.collectionName = settings.Value.CollectionName;
-
             if (!BsonClassMap.IsClassMapRegistered(typeof(DomainBase)))
             {
-                BsonClassMap.RegisterClassMap<DomainBase>(x =>
+                BsonClassMap.TryRegisterClassMap<DomainBase>(x =>
                 {
                     x.AutoMap();
                     x.MapIdMember(y => y.Id)
@@ -35,7 +34,7 @@ namespace PixelPerPixel.TestDemo.DbContext
 
             if (!BsonClassMap.IsClassMapRegistered(typeof(FooBar)))
             {
-                BsonClassMap.RegisterClassMap<FooBar>(x =>
+                BsonClassMap.TryRegisterClassMap<FooBar>(x =>
                 {
                     x.AutoMap();
                 });
