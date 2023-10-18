@@ -10,7 +10,7 @@ using PixelPerPixel.TestDemo.Repositories.Interfaces;
 
 namespace PixelPerPixel.TestDemo.IntegrationTests.xUnit;
 
-public class FooBarRepositoryTests : IAsyncDisposable
+public class FooBarRepositoryTests : IAsyncLifetime
 {
     private readonly IConfigurationRoot configuration;
 
@@ -56,7 +56,11 @@ public class FooBarRepositoryTests : IAsyncDisposable
         Assert.NotNull(savedFooBar.Id);
     }
 
-    public async ValueTask DisposeAsync()
+    public async Task InitializeAsync()
+    {
+    }
+
+    async Task IAsyncLifetime.DisposeAsync()
     {
         await this.dbContext.FooBarCollection.DeleteManyAsync(FilterDefinition<FooBar>.Empty);
 
