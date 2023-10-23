@@ -11,6 +11,7 @@ namespace PixelPerPixel.TestDemo.UnitTests.Specflow.StepDefinitions
     {
         private readonly FooBarRepositoryMocks repositoryMock;
         private FooBar expected;
+        private FooBar currentInstanceToTest;
         private FooBar result;
 
         public FooBarServiceSteps(FooBarRepositoryMocks repositoryMock)
@@ -22,6 +23,8 @@ namespace PixelPerPixel.TestDemo.UnitTests.Specflow.StepDefinitions
         public void GivenADefaultFoobarInstanceIsCreated()
         {
             expected = FooBarFixture.Default;
+
+            currentInstanceToTest = FooBarFixture.Default;
         }
 
         [Given(@"the FooBarRepository get method is mocked")]
@@ -41,7 +44,7 @@ namespace PixelPerPixel.TestDemo.UnitTests.Specflow.StepDefinitions
         {
             IFooBarService service = new FooBarService(this.repositoryMock.RepositoryMock.Object);
 
-            this.result = await service.SaveFooBar(FooBarFixture.Default);
+            this.result = await service.SaveFooBar(this.currentInstanceToTest);
         }
 
         [When(@"GetFooBar is called")]
@@ -63,5 +66,22 @@ namespace PixelPerPixel.TestDemo.UnitTests.Specflow.StepDefinitions
         {
             Assert.NotNull(result);
         }
+
+        [Given(@"A FooBar instance is used with Foo of (.*) and Bar of '([^']*)'")]
+        public void GivenAFooBarInstanceIsUsedWithFooOfAndBarOf(int foo, string bar)
+        {
+            this.expected = new FooBar
+            {
+                Foo = foo,
+                Bar = bar
+            };
+
+            this.currentInstanceToTest = new FooBar
+            {
+                Foo = foo,
+                Bar = bar
+            };
+        }
+
     }
 }

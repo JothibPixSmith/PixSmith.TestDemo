@@ -124,15 +124,20 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="As a FooBar Rest Service User, I want to get an existing FooBar")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="As a FooBar Rest Service User, I want to save many new FooBars")]
         [Xunit.TraitAttribute("FeatureTitle", "FooBarService")]
-        [Xunit.TraitAttribute("Description", "As a FooBar Rest Service User, I want to get an existing FooBar")]
-        public virtual void AsAFooBarRestServiceUserIWantToGetAnExistingFooBar()
+        [Xunit.TraitAttribute("Description", "As a FooBar Rest Service User, I want to save many new FooBars")]
+        [Xunit.InlineDataAttribute("1", "1", new string[0])]
+        [Xunit.InlineDataAttribute("2", "2", new string[0])]
+        [Xunit.InlineDataAttribute("3", "3", new string[0])]
+        public virtual void AsAFooBarRestServiceUserIWantToSaveManyNewFooBars(string foo, string bar, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a FooBar Rest Service User, I want to get an existing FooBar", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 9
+            argumentsOfScenario.Add("Foo", foo);
+            argumentsOfScenario.Add("Bar", bar);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a FooBar Rest Service User, I want to save many new FooBars", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -152,16 +157,60 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
- testRunner.Given("A Default Foobar instance is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 11
- testRunner.And("the FooBarRepository get method is mocked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("A FooBar instance is used with Foo of {0} and Bar of \'{1}\'", foo, bar), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 12
- testRunner.When("GetFooBar is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the FooBarRepository save method is mocked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
+ testRunner.When("SaveFooBar is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 14
+ testRunner.Then("the resulting FooBar instance bar property must end with \'abc\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="As a FooBar Rest Service User, I want to get an existing FooBar")]
+        [Xunit.TraitAttribute("FeatureTitle", "FooBarService")]
+        [Xunit.TraitAttribute("Description", "As a FooBar Rest Service User, I want to get an existing FooBar")]
+        public virtual void AsAFooBarRestServiceUserIWantToGetAnExistingFooBar()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a FooBar Rest Service User, I want to get an existing FooBar", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 22
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 23
+ testRunner.Given("A Default Foobar instance is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 24
+ testRunner.And("the FooBarRepository get method is mocked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 25
+ testRunner.When("GetFooBar is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 26
  testRunner.Then("the resulting FooBar instance is not null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

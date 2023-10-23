@@ -10,8 +10,6 @@ namespace PixelPerPixel.TestDemo.UnitTests.NUnit
     {
         private FooBarRepositoryMocks repositoryMocks;
 
-        private static IEnumerable<FooBar> fooBarDataDrivenTestData;
-
         [SetUp]
         public void Setup()
         {
@@ -20,8 +18,6 @@ namespace PixelPerPixel.TestDemo.UnitTests.NUnit
             this.repositoryMocks.MockSaveFooBar();
 
             this.repositoryMocks.MockGetFooBar(FooBarFixture.Default);
-
-            fooBarDataDrivenTestData = FooBarTestCaseFixtures.FooBarDataDrivenTestData().ToList();
         }
 
         [Test]

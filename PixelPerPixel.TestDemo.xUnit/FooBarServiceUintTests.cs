@@ -1,3 +1,4 @@
+using PixelPerPixel.TestDemo.Domain;
 using PixelPerPixel.TestDemo.Services;
 using PixelPerPixel.TestDemo.Services.Interfaces;
 using PixelPerPixel.TestDemo.UnitTests.xUnit.Fixtures;
@@ -28,6 +29,17 @@ namespace PixelPerPixel.TestDemo.UnitTests.xUnit
             Assert.True(savedFooBar.Bar.EndsWith("abc"));
         }
 
+        [Theory]
+        [MemberData(nameof(FooBarTestData))]
+        public async Task SaveFooBarServiceTestDataDriven(FooBar fooBar)
+        {
+            IFooBarService service = new FooBarService(this.repositoryMock.RepositoryMock.Object);
+
+            var savedFooBar = await service.SaveFooBar(fooBar);
+
+            Assert.True(savedFooBar.Bar.EndsWith("abc"));
+        }
+
         [Fact]
         public async Task GetFooBarServiceTest()
         {
@@ -37,5 +49,12 @@ namespace PixelPerPixel.TestDemo.UnitTests.xUnit
 
             Assert.Equal(123, savedFooBar.Foo);
         }
+
+        public static IEnumerable<object[]> FooBarTestData => new List<FooBar[]>
+        {
+            new FooBar[] {new FooBar { Foo = 1, Bar = "1" }},
+            new FooBar[] {new FooBar { Foo = 2, Bar = "2"  }},
+            new FooBar[] { new FooBar { Foo = 3, Bar = "3"  }}
+        };
     }
 }
