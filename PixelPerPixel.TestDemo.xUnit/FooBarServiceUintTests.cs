@@ -52,9 +52,9 @@ namespace PixelPerPixel.TestDemo.UnitTests.xUnit
 
         public static IEnumerable<object[]> FooBarTestData => new List<FooBar[]>
         {
-            new FooBar[] {new FooBar { Foo = 1, Bar = "1" }},
-            new FooBar[] {new FooBar { Foo = 2, Bar = "2"  }},
-            new FooBar[] { new FooBar { Foo = 3, Bar = "3"  }}
+            new FooBar[] { new FooBar { Foo = 1, Bar = "1" }},
+            new FooBar[] { new FooBar { Foo = 2, Bar = "2" }},
+            new FooBar[] { new FooBar { Foo = 3, Bar = "3" }}
         };
     }
 }

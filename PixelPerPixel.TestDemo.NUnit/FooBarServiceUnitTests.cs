@@ -51,26 +51,32 @@ namespace PixelPerPixel.TestDemo.UnitTests.NUnit
             Assert.That(savedFooBar.Foo, Is.EqualTo(123));
         }
 
-        private static IEnumerable<FooBar> TestCaseFooBarFixture()
+        private static IEnumerable<FooBar[]> TestCaseFooBarFixture() => new List<FooBar[]>
         {
-
-            yield return new FooBar
+            new FooBar[]
             {
-                Foo = 1,
-                Bar = "1"
-            };
-
-            yield return new FooBar
+                new FooBar
+                {
+                    Foo = 1,
+                    Bar = "1"
+                }
+            },
+            new FooBar[]
             {
-                Foo = 2,
-                Bar = "2"
-            };
-
-            yield return new FooBar
+                new FooBar
+                {
+                    Foo = 2,
+                    Bar = "2"
+                }
+            },
+            new FooBar[]
             {
-                Foo = 3,
-                Bar = "3"
-            };
-        }
+                new FooBar
+                {
+                    Foo = 3,
+                    Bar = "3"
+                }
+            }
+        };
     }
 }
